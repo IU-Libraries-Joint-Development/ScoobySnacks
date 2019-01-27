@@ -79,7 +79,7 @@ schema['work_types'].except("default").each do |work_type_name, work_type|
     predicate_name = property["predicate"].split(":",2).last
 
     #sort out the predicate namespace if necessary
-    namespaces = schema['namespaces']
+    namespaces = schema['namespaces'] || {}
     if namespaces.key?(ns_prefix)
       property['predicate'] = namespaces[ns_prefix] + predicate_name
       property['rdf_namespace'] = false

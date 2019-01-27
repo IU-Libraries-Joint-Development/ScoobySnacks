@@ -13,7 +13,7 @@ module ScoobySnacks::WorkModelBehavior
     class_attribute :controlled_properties
     self.controlled_properties = []
     
-    ScoobySnacks::METADATA_SCHEMA['work_types'][self.human_readable_type.downcase]["properties"].each do |prop_name, prop|
+    ScoobySnacks::METADATA_SCHEMA.with_indifferent_access['work_types'][self.human_readable_type.downcase.gsub(' ','_')]["properties"].each do |prop_name, prop|
       
       index_work_as = :stored_searchable
       index_work_as = prop['index_as'].to_sym if prop.key? 'index_as'
